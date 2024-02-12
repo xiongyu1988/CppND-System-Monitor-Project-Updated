@@ -60,13 +60,12 @@ vector<int> LinuxParser::Pids() {
       // Is every character of the name a digit?
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
-        //int pid = stoi(filename);
+        long long int pid0;
         try {
-          long long int pid = stoi(filename);
+          pid0 = stoi(filename);
         } catch (std::out_of_range& e) {
           std::cerr << "Number is out of range: " << e.what() << '\n';
         }
-        long long int pid0 = stoi(filename);
         pids.push_back(pid0);
       }
     }
