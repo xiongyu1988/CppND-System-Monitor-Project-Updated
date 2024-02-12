@@ -23,8 +23,9 @@ vector<Process>& System::Processes() {
   vector<int> pids = LinuxParser::Pids();
   for (std::vector<int>::iterator it = pids.begin(); it != pids.end(); it++) {
     int pidIndex = *it;
-    processes_.push_back(Process(pidIndex));
+    processes_.emplace_back(Process(pidIndex));
   };
+  //std::sort(processes_.begin(), processes_.end());
   return processes_;
 }
 
